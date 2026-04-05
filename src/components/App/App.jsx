@@ -13,8 +13,9 @@ import { useState, useEffect } from "react";
 function App() {
   // 1. State hooks
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
-  const [temperature, setTemperature] = useState(0); // placeholder
+  const [temperature, setTemperature] = useState(0);
   const [activeModal, setActiveModal] = useState("");
+  const [weatherMain, setWeatherMain] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
 
   // 2. Effects (always at top level)
@@ -30,6 +31,9 @@ function App() {
       .then((data) => {
         const temp = Math.round(data.main.temp);
         setTemperature(temp);
+
+        const mainCondition = data.weather[0].main;
+        setWeatherMain(mainCondition);
       })
       .catch((err) => console.error("Weather fetch error:", err));
   }, []);
@@ -61,7 +65,6 @@ function App() {
   //}
 
   function handleCardClick(card) {
-    console.log("Card clicked:", card);
     setSelectedCard(card);
     setActiveModal("preview");
   }
@@ -73,6 +76,7 @@ function App() {
       <Main
         clothingItems={clothingItems}
         temperature={temperature}
+        weatherMain={weatherMain}
         onCardClick={handleCardClick}
       />
       <AddItemModal

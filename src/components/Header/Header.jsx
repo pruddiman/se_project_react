@@ -19,7 +19,7 @@ function Header({ onAddClothes }) {
         </button>
 
         <div className="header__user-info">
-          <p className="header__username">Philip</p>
+          <p className="header__username">Philip Ruddiman</p>
           <img src="/avatar.png" alt="User avatar" className="header__avatar" />
         </div>
       </div>

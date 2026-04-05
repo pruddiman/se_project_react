@@ -1,3 +1,16 @@
 .main {
   overflow: visible;
 }
+
+.clothing-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-width: 1360px;
+}
+
+.header__weather-image {
+}

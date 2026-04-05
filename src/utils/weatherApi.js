@@ -11,8 +11,24 @@ export function getWeather() {
   });
 }
 
-export function getWeatherCondition(temp) {
+export function getTemperatureCategory(temp) {
   if (temp >= 86) return "hot";
   if (temp >= 66) return "warm";
   return "cold";
+}
+
+export function getWeatherCategory(main) {
+  if (main === "Clear") return "sunny";
+  if (main === "Clouds") return "cloudy";
+  if (main === "Rain" || main === "Drizzle") return "rain";
+  if (main === "Thunderstorm") return "storm";
+  if (main === "Snow") return "snow";
+  if (main === "Mist" || main === "Haze" || main === "Fog") return "fog";
+
+  return "sunny"; // fallback
+}
+
+export function getTimeOfDay() {
+  const hour = new Date().getHours();
+  return hour >= 6 && hour < 18 ? "day" : "night";
 }
