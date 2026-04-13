@@ -1,8 +1,8 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 20px;
+  padding: 20px 24px;
   font-family: "Cabinet Grotesk", "Segoe UI", sans-serif;
   font-weight: 700;
 }
@@ -14,7 +14,7 @@
 }
 
 .header__logo {
-  width: 60px;
+  width: 89px;
 }
 
 .header__date-location {
@@ -25,6 +25,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-left: auto;
   line-height: 1.2;
 }
 
@@ -34,12 +35,24 @@
   background-color: transparent;
   border: none;
   font-weight: 700;
+  line-height: 1.2;
+  font-family:
+    Cabinet Grotesk,
+    "Segoe UI",
+    sans-serif;
+  font-size: 20px;
 }
 
 .header__user-info {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.header__username {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", "Segoe UI", sans-serif;
 }
 
 .header__avatar {

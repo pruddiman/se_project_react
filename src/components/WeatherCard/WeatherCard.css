@@ -1,0 +1,31 @@
+.weather-card {
+  width: 100%;
+}
+
+.weather-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto; /* important */
+}
+
+.weather-card__image {
+  width: 100%;
+  height: auto; /* important */
+  display: block; /* prevents weird spacing */
+  object-fit: cover;
+}
+
+.weather-card__temp {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 700;
+  margin: 0;
+  z-index: 2; /* important */
+  font-family: "Cabinet Grotesk", "Segoe UI", sans-serif;
+  pointer-events: none;
+}

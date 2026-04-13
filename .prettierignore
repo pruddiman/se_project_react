@@ -1,0 +1,12 @@
+build/
+dist/
+node_modules/
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.gif
+.env
+.env.local
+.gitignore
+.vite/

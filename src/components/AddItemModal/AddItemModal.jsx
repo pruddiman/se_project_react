@@ -35,14 +35,17 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
     onClose();
   }
 
+  const isFormValid = name && imageUrl && weather;
+
   return (
     <ModalWithForm
-      title="New Garment"
+      title="New garment"
       name="add-garment"
       buttonText="Add garment"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isSubmitDisabled={!isFormValid}
     >
       <label className="modal__label">
         Name
@@ -52,6 +55,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
           className="modal__input"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
           required
         />
       </label>
@@ -64,17 +68,19 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
           className="modal__input"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
+          placeholder="Image URL"
           required
         />
       </label>
 
       <fieldset className="modal__fieldset">
-        <legend className="modal__legend">Weather type</legend>
+        <legend className="modal__legend">Select the weather type:</legend>
 
         <label className="modal__radio-label">
           <input
             type="radio"
             name="weather"
+            className="radio__input"
             value="hot"
             checked={weather === "hot"}
             onChange={(e) => setWeather(e.target.value)}
@@ -86,6 +92,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
           <input
             type="radio"
             name="weather"
+            className="radio__input"
             value="warm"
             checked={weather === "warm"}
             onChange={(e) => setWeather(e.target.value)}
@@ -97,6 +104,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
           <input
             type="radio"
             name="weather"
+            className="radio__input"
             value="cold"
             checked={weather === "cold"}
             onChange={(e) => setWeather(e.target.value)}

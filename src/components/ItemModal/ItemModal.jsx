@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./ItemModal.css";
+import closeIcon from "../../assets/icons/Modal_Close_Icon_X.svg";
 
 function ItemModal({ isOpen, onClose, card }) {
   if (!isOpen || !card) return null;
@@ -19,7 +20,13 @@ function ItemModal({ isOpen, onClose, card }) {
   return (
     <div className="item-modal" onClick={onClose}>
       <div className="item-modal__content" onClick={(e) => e.stopPropagation()}>
-        <button className="item-modal__close" onClick={onClose}></button>
+        <button className="item-modal__close" type="button" onClick={onClose}>
+          <img
+            src={closeIcon}
+            alt="Close Icon"
+            className="item-modal__close-icon"
+          />
+        </button>
 
         <img
           src={card.imageUrl || card.link}

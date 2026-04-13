@@ -1,4 +1,5 @@
 import "./ModalWithForm.css";
+import closeIcon from "../../assets/icons/Modal_Close_Icon_X.svg";
 import { useEffect } from "react";
 
 function ModalWithForm({
@@ -9,6 +10,7 @@ function ModalWithForm({
   isOpen,
   onClose,
   onSubmit,
+  isSubmitDisabled,
 }) {
   useEffect(() => {
     if (!isOpen) return;
@@ -26,17 +28,23 @@ function ModalWithForm({
   return (
     <div
       className={`modal modal_type_${name} ${isOpen ? "modal_is-opened" : ""}`}
-      onClick={onClose} // closes when clicking overlay
+      onClick={onClose}
     >
       <div className="modal__content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal__close" type="button" onClick={onClose} />
+        <button className="modal__close" type="button" onClick={onClose}>
+          <img src={closeIcon} alt="Close Icon" className="modal__close-icon" />
+        </button>
 
         <h3 className="modal__title">{title}</h3>
 
         <form className="modal__form" name={name} onSubmit={onSubmit}>
           {children}
 
-          <button className="modal__submit" type="submit">
+          <button
+            className={`modal__submit ${isSubmitDisabled ? "modal__submit-disabled" : ""}`}
+            disabled={isSubmitDisabled}
+            type="submit"
+          >
             {buttonText}
           </button>
         </form>

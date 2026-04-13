@@ -17,6 +17,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [weatherMain, setWeatherMain] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
+  const [weatherData, setWeatherData] = useState(null);
 
   // 2. Effects (always at top level)
   // useEffect(() => {
@@ -26,6 +27,8 @@ function App() {
   //     .catch((err) => console.error(err));
   // }, []);
 
+  const city = weatherData?.name;
+
   useEffect(() => {
     getWeather()
       .then((data) => {
@@ -34,6 +37,8 @@ function App() {
 
         const mainCondition = data.weather[0].main;
         setWeatherMain(mainCondition);
+
+        setWeatherData(data);
       })
       .catch((err) => console.error("Weather fetch error:", err));
   }, []);
@@ -72,7 +77,7 @@ function App() {
   // 4. JSX
   return (
     <div className="app">
-      <Header onAddClothes={handleOpenAddItemModal} />
+      <Header onAddClothes={handleOpenAddItemModal} city={city} />
       <Main
         clothingItems={clothingItems}
         temperature={temperature}

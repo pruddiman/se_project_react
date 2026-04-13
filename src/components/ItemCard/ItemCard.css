@@ -5,17 +5,40 @@
   overflow: hidden;
 }
 
+.card__image-wrapper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+}
+
 .card__image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   display: block;
-  object-fit: cover;
-  border-radius: 8px;
-  max-width: 328px;
+  border-radius: 16px;
+  cursor: pointer;
 }
 
 .card__name {
+  position: absolute;
+  object-fit: cover;
+  width: auto;
+  height: auto;
+  left: 50%;
+  bottom: 85%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
   margin: 0;
-  font-weight: 600;
+  pointer-events: none;
   text-align: center;
+  border-radius: 4px;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 0 8px;
 }

@@ -1,0 +1,11 @@
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-weight: 500;
+  font-family:
+    Cabinet Grotesk,
+    "Segoe UI",
+    sans-serif;
+}

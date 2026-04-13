@@ -2,6 +2,13 @@
   overflow: visible;
 }
 
+.header-temp {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  font-family: "Cabinet Grotesk", "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
 .clothing-section {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
