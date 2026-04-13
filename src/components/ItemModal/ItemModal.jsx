@@ -3,10 +3,9 @@ import "./ItemModal.css";
 import closeIcon from "../../assets/icons/Modal_Close_Icon_X.svg";
 
 function ItemModal({ isOpen, onClose, card }) {
-  if (!isOpen || !card) return null;
-
-  // Escape key closes modal
   useEffect(() => {
+    if (!isOpen) return; // guard inside the effect
+
     function handleEsc(e) {
       if (e.key === "Escape") {
         onClose();
@@ -15,7 +14,9 @@ function ItemModal({ isOpen, onClose, card }) {
 
     document.addEventListener("keydown", handleEsc);
     return () => document.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
+  }, [isOpen, onClose]);
+
+  if (!isOpen || !card) return null;
 
   return (
     <div className="item-modal" onClick={onClose}>
