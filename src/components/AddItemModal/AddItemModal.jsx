@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import "./AddItemModal.css";
 
@@ -7,19 +6,6 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    function handleEsc(e) {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    }
-
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, [isOpen, onClose]);
 
   function handleSubmit(e) {
     e.preventDefault();

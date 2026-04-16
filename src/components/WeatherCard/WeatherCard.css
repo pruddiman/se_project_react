@@ -5,13 +5,13 @@
 .weather-card__image-wrapper {
   position: relative;
   width: 100%;
-  height: auto; /* important */
+  height: auto;
 }
 
 .weather-card__image {
   width: 100%;
-  height: auto; /* important */
-  display: block; /* prevents weird spacing */
+  height: auto;
+  display: block;
   object-fit: cover;
 }
 
@@ -25,7 +25,7 @@
   line-height: 1.1;
   font-weight: 700;
   margin: 0;
-  z-index: 2; /* important */
+  z-index: 2;
   font-family: "Cabinet Grotesk", "Segoe UI", sans-serif;
   pointer-events: none;
 }

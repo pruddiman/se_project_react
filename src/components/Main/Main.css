@@ -1,5 +1,6 @@
 .main {
   overflow: visible;
+  padding: 0 20px;
 }
 
 .header-temp {
@@ -16,8 +17,4 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  max-width: 1360px;
-}
-
-.header__weather-image {
 }

@@ -7,6 +7,8 @@
 .modal__input {
   padding: 8px;
   margin-top: 5px;
+  border: none;
+  border-bottom: 1px solid;
 }
 
 .modal__fieldset {

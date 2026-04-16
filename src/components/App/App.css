@@ -1,0 +1,13 @@
+.app {
+  min-height: 100vh;
+  background-color: #f3f3f3; /* or whatever your global bg is */
+}
+
+.app__content {
+  max-width: 1360px; /* or 1280px depending on your Figma */
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* spacing between header, main, footer */
+}

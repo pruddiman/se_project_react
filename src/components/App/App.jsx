@@ -77,24 +77,30 @@ function App() {
   // 4. JSX
   return (
     <div className="app">
-      <Header onAddClothes={handleOpenAddItemModal} city={city} />
-      <Main
-        clothingItems={clothingItems}
-        temperature={temperature}
-        weatherMain={weatherMain}
-        onCardClick={handleCardClick}
-      />
+      <div className="app__content">
+        <Header onAddClothes={handleOpenAddItemModal} city={city} />
+
+        <Main
+          clothingItems={clothingItems}
+          temperature={temperature}
+          weatherMain={weatherMain}
+          onCardClick={handleCardClick}
+        />
+
+        <Footer />
+      </div>
+
       <AddItemModal
         isOpen={activeModal === "add-garment"}
         onClose={handleCloseModal}
         onAddItem={handleAddItem}
       />
+
       <ItemModal
         isOpen={activeModal === "preview"}
         onClose={handleCloseModal}
         card={selectedCard}
       />
-      <Footer />
     </div>
   );
 }
