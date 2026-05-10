@@ -1,0 +1,9 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-page__content-wrapper {
+  max-width: 1087px;
+  margin-left: auto;
+}

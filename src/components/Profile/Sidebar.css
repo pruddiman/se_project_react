@@ -1,0 +1,25 @@
+.sidebar {
+  gap: 20px;
+  max-width: 220px;
+}
+
+.sidebar__profile {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 220px;
+}
+
+.sidebar__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.sidebar__name {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", "Segoe UI", sans-serif;
+  text-align: center;
+  margin: 0;
+}

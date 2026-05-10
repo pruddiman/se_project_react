@@ -17,7 +17,12 @@ class Api {
   getItems() {
     return fetch(`${this._baseUrl}/items`, {
       headers: this._headers,
-    }).then(this._checkResponse);
+    }).then((res) => {
+      if (!res.ok) {
+        throw new Error(`Error: ${res.status}`);
+      }
+      return res.json();
+    });
   }
 
   // POST /items — add a new clothing item
@@ -33,7 +38,14 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then(this._checkResponse);
+    }).then((res) => this._checkResponse(res));
+  }
+
+  deleteCard(itemId) {
+    return fetch(`${this._baseUrl}/items/${itemId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => this._checkResponse(res));
   }
 }
 

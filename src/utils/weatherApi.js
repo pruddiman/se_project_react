@@ -11,10 +11,10 @@ export function getWeather() {
   });
 }
 
-export function getTemperatureCategory(temp) {
-  if (temp >= 86) return "hot";
-  if (temp >= 66) return "warm";
-  return "cold";
+export function getTemperatureCategory(tempF) {
+  if (tempF < 50) return "cold";
+  if (tempF < 70) return "warm";
+  return "hot";
 }
 
 export function getWeatherCategory(main) {

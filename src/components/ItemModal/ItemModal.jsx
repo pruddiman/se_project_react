@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./ItemModal.css";
 import closeIcon from "../../assets/icons/Modal_Close_Icon_X.svg";
 
-function ItemModal({ isOpen, onClose, card }) {
+function ItemModal({ isOpen, onClose, card, onDelete }) {
   useEffect(() => {
     if (!isOpen) return; // guard inside the effect
 
@@ -38,6 +38,17 @@ function ItemModal({ isOpen, onClose, card }) {
         <div className="item-modal__info">
           <h2 className="item-modal__name">{card.name}</h2>
           <p className="item-modal__weather">Weather: {card.weather}</p>
+          <button
+            className="item-modal__delete"
+            type="button"
+            onClick={() => {
+              console.log("Delete clicked");
+              console.log("onDelete:", onDelete);
+              onDelete(card);
+            }}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
