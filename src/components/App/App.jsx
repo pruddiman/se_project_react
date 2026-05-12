@@ -112,8 +112,9 @@ function App() {
                 element={
                   <Main
                     clothingItems={clothingItems}
-                    tempToShow={temperature}
+                    temperature={temperature}
                     weatherMain={weatherMain}
+                    weatherCondition={weatherCondition}
                     onCardClick={handleCardClick}
                   />
                 }
