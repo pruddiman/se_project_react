@@ -9,7 +9,7 @@ function ItemCard({ item, onCardClick }) {
           src={item.link || item.imageUrl}
           alt={item.name}
           className="card__image"
-          onClick={() => onCardClick(item)}
+          onClick={() => onCardClick(item._id)}
         />
       </div>
     </li>

@@ -23,7 +23,7 @@ function ModalWithForm({
 
     document.addEventListener("keydown", handleEsc);
     return () => document.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
+  }, [isOpen, onClose]);
 
   return (
     <div

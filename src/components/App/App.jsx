@@ -20,16 +20,19 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [weatherMain, setWeatherMain] = useState("");
+  const [weatherCondition, setWeatherCondition] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [temperature, setTemperature] = useState({ F: null, C: null });
 
   useEffect(() => {
-    api.getItems().then((items) => {
-      console.log("Fetched items:", items);
-      setClothingItems(items);
-    });
+    api
+      .getItems()
+      .then((items) => {
+        setClothingItems(items);
+      })
+      .catch((err) => console.error("Clothing fetch error:", err));
   }, []);
 
   const handleToggleSwitchChange = () => {
@@ -47,6 +50,8 @@ function App() {
 
         const category = getTemperatureCategory(tempF);
         setWeatherMain(category);
+
+        setWeatherCondition(data.weather[0].main);
 
         setWeatherData(data);
       })
@@ -66,10 +71,10 @@ function App() {
 
   function handleCardDelete(card) {
     api
-      .deleteCard(card.id)
+      .deleteCard(card._id)
       .then(() => {
         setClothingItems((items) =>
-          items.filter((item) => item.id !== card.id),
+          items.filter((item) => item._id !== card._id),
         );
         handleCloseModal();
       })

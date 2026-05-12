@@ -2,7 +2,6 @@ import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection({ clothingItems, onCardClick, onAddItem }) {
-  console.log(clothingItems);
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">

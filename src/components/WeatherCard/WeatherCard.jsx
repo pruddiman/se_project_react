@@ -4,10 +4,10 @@ import { headerImages } from "../../utils/headerImages";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 
-function WeatherCard({ temperature, weatherMain }) {
+function WeatherCard({ temperature, weatherCondition }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const timeOfDay = getTimeOfDay();
-  const weatherType = getWeatherCategory(weatherMain);
+  const weatherType = getWeatherCategory(weatherCondition);
   const headerImage = headerImages[timeOfDay][weatherType];
 
   return (

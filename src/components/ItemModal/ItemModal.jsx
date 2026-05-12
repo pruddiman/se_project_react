@@ -42,8 +42,6 @@ function ItemModal({ isOpen, onClose, card, onDelete }) {
             className="item-modal__delete"
             type="button"
             onClick={() => {
-              console.log("Delete clicked");
-              console.log("onDelete:", onDelete);
               onDelete(card);
             }}
           >

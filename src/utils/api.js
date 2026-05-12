@@ -17,12 +17,7 @@ class Api {
   getItems() {
     return fetch(`${this._baseUrl}/items`, {
       headers: this._headers,
-    }).then((res) => {
-      if (!res.ok) {
-        throw new Error(`Error: ${res.status}`);
-      }
-      return res.json();
-    });
+    }).then(this._checkResponse);
   }
 
   // POST /items — add a new clothing item

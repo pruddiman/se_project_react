@@ -24,7 +24,6 @@
 
 .card__name {
   position: absolute;
-  object-fit: cover;
   width: auto;
   height: auto;
   left: 50%;
