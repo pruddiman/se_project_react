@@ -4,9 +4,6 @@ import "./AddItemModal.css";
 import { useForm } from "../../hooks/useForm.js";
 
 function AddItemModal({ isOpen, onClose, onAddItem }) {
-  // const [name, setName] = useState("");
-  // const [imageUrl, setImageUrl] = useState("");
-  // const [weather, setWeather] = useState("");
   const { values, handleChange, resetForm } = useForm({
     name: "",
     imageUrl: "",

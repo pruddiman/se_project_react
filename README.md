@@ -91,7 +91,7 @@ npm run deploy
 
 Your site will be available at:
 
-https://<your-username>.github.io/se_project_react/
+https://<pruddiman>.github.io/se_project_react/
 
 ## Screenshots
 

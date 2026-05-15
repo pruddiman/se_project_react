@@ -5,7 +5,6 @@ import Footer from "../Footer/Footer.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import api from "../../utils/api.js";
-import { defaultClothingItems } from "../../utils/clothingItems.js";
 import { getWeather } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import { BrowserRouter } from "react-router-dom";
