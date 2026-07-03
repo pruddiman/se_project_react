@@ -16,7 +16,7 @@ class Api {
   // GET /items — fetch all clothing items
   getItems() {
     return fetch(`${this._baseUrl}/items`, {
-      headers: this._headers,
+      headers: this._headers(),
     }).then(this._checkResponse);
   }
 
@@ -24,7 +24,7 @@ class Api {
   addItem({ name, weather, imageUrl }) {
     return fetch(`${this._baseUrl}/items`, {
       method: "POST",
-      headers: this._headers,
+      headers: this._headers(),
       body: JSON.stringify({ name, weather, imageUrl }),
     }).then(this._checkResponse);
   }
@@ -32,23 +32,24 @@ class Api {
   // GET /user/me — fetch user info (used in Step 8)
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
+      headers: this._headers(),
     }).then((res) => this._checkResponse(res));
   }
 
   deleteCard(itemId) {
     return fetch(`${this._baseUrl}/items/${itemId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._headers(),
     }).then((res) => this._checkResponse(res));
   }
 }
 
 const api = new Api({
-  baseUrl: "http://localhost:3001", // or your deployed URL
-  headers: {
+  baseUrl: "https://se-project-express-8rtd.onrender.com",
+  headers: () => ({
     "Content-Type": "application/json",
-  },
+    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+  }),
 });
 
 export default api;
