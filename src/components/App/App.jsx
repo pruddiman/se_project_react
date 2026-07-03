@@ -13,7 +13,7 @@ import Profile from "../Profile/Profile.jsx";
 import { getTemperatureCategory } from "../../utils/weatherApi.js";
 
 import { useState, useEffect } from "react";
-import Login from "./components/Login";
+import Login from "../Login.jsx";
 
 function App() {
   // 1. State hooks
