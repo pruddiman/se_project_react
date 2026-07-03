@@ -13,9 +13,14 @@ import Profile from "../Profile/Profile.jsx";
 import { getTemperatureCategory } from "../../utils/weatherApi.js";
 
 import { useState, useEffect } from "react";
+import Login from "./components/Login";
 
 function App() {
   // 1. State hooks
+  const [loggedIn, setLoggedIn] = useState(
+    Boolean(localStorage.getItem("jwt")),
+  );
+
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [weatherMain, setWeatherMain] = useState("");
@@ -26,13 +31,17 @@ function App() {
   const [temperature, setTemperature] = useState({ F: null, C: null });
 
   useEffect(() => {
+    if (!loggedIn) return;
+
     api
       .getItems()
-      .then((items) => {
-        setClothingItems(items);
-      })
+      .then((data) => setClothingItems(data))
       .catch((err) => console.error("Clothing fetch error:", err));
-  }, []);
+  }, [loggedIn]);
+
+  if (!loggedIn) {
+    return <Login onLogin={() => setLoggedIn(true)} />;
+  }
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
