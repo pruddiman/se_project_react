@@ -5,22 +5,18 @@ import Footer from "../Footer/Footer.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import api from "../../utils/api.js";
-import { getWeather } from "../../utils/weatherApi.js";
+import { getWeather, getTemperatureCategory } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile.jsx";
-import { getTemperatureCategory } from "../../utils/weatherApi.js";
-
 import { useState, useEffect } from "react";
 import Login from "../Login.jsx";
 
 function App() {
-  // 1. State hooks
+  // state
   const [loggedIn, setLoggedIn] = useState(
     Boolean(localStorage.getItem("jwt")),
   );
-
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [weatherMain, setWeatherMain] = useState("");
@@ -30,8 +26,12 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [temperature, setTemperature] = useState({ F: null, C: null });
 
+  // fetch items when logged in
   useEffect(() => {
-    if (!loggedIn) return;
+    if (!loggedIn) {
+      setClothingItems([]);
+      return;
+    }
 
     api
       .getItems()
@@ -39,16 +39,7 @@ function App() {
       .catch((err) => console.error("Clothing fetch error:", err));
   }, [loggedIn]);
 
-  if (!loggedIn) {
-    return <Login onLogin={() => setLoggedIn(true)} />;
-  }
-
-  const handleToggleSwitchChange = () => {
-    setCurrentTemperatureUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
-  };
-
-  const city = weatherData?.name;
-
+  // fetch weather
   useEffect(() => {
     getWeather()
       .then((data) => {
@@ -58,16 +49,19 @@ function App() {
 
         const category = getTemperatureCategory(tempF);
         setWeatherMain(category);
-
         setWeatherCondition(data.weather[0].main);
-
         setWeatherData(data);
       })
       .catch((err) => console.error("Weather fetch error:", err));
   }, []);
 
-  // 3. Event handlers
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
+  };
 
+  const city = weatherData?.name;
+
+  // handlers
   function handleOpenAddItemModal() {
     setActiveModal("add-garment");
   }
@@ -105,7 +99,7 @@ function App() {
     setActiveModal("preview");
   }
 
-  // 4. JSX
+  // JSX
   return (
     <div className="app">
       <div className="app__content">
@@ -113,45 +107,53 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <BrowserRouter>
-            <Header onAddClothes={handleOpenAddItemModal} city={city} />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    clothingItems={clothingItems}
-                    temperature={temperature}
-                    weatherMain={weatherMain}
-                    weatherCondition={weatherCondition}
-                    onCardClick={handleCardClick}
-                  />
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <Profile
-                    clothingItems={clothingItems}
-                    onCardClick={handleCardClick}
-                    onAddItem={handleOpenAddItemModal}
-                  />
-                }
-              />
-            </Routes>
+            {!loggedIn ? (
+              <Login onLogin={() => setLoggedIn(true)} />
+            ) : (
+              <>
+                <Header onAddClothes={handleOpenAddItemModal} city={city} />
 
-            <AddItemModal
-              isOpen={activeModal === "add-garment"}
-              onClose={handleCloseModal}
-              onAddItem={handleAddItem}
-            />
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <Main
+                        clothingItems={clothingItems}
+                        temperature={temperature}
+                        weatherMain={weatherMain}
+                        weatherCondition={weatherCondition}
+                        onCardClick={handleCardClick}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <Profile
+                        clothingItems={clothingItems}
+                        onCardClick={handleCardClick}
+                        onAddItem={handleOpenAddItemModal}
+                      />
+                    }
+                  />
+                </Routes>
 
-            <ItemModal
-              isOpen={activeModal === "preview"}
-              onClose={handleCloseModal}
-              card={selectedCard}
-              onDelete={handleCardDelete}
-            />
-            <Footer />
+                <AddItemModal
+                  isOpen={activeModal === "add-garment"}
+                  onClose={handleCloseModal}
+                  onAddItem={handleAddItem}
+                />
+
+                <ItemModal
+                  isOpen={activeModal === "preview"}
+                  onClose={handleCloseModal}
+                  card={selectedCard}
+                  onDelete={handleCardDelete}
+                />
+
+                <Footer />
+              </>
+            )}
           </BrowserRouter>
         </CurrentTemperatureUnitContext.Provider>
       </div>
